@@ -17,7 +17,8 @@ public class MainPage {
     private final By  fillingSection =By.xpath(".//span[contains(text(),'Начинки')]");
     //локатор кнопки личный кабинет
     private final By  personalAccountButton =By.xpath(".//*[text() = 'Личный Кабинет']");
-            //локатор кнопки войти в аккаунт
+    //локатор кнопки войти в аккаунт
+    private final By  loginYourAccountButton = By.xpath("");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
