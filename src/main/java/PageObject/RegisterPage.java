@@ -53,13 +53,13 @@ public class RegisterPage {
         return this;
     }
 
-    @Step("Click on the Register button")
+    @Step("Click on the Register button on register page")
     // Метод для клика по кнопке регистрации
     public RegisterPage clickRegisterButton() {
         this.driver.findElement(this.registerButton).click();
         return this;
     }
-    @Step("Click on the enter button")
+    @Step("Click on the enter button on register page")
     // Метод для клика по кнопке входа
     public RegisterPage clickEnterButton() {
         WebElement enterButtonElement = wait.until(ExpectedConditions.elementToBeClickable(enterButton));

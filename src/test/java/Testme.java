@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
+import static org.junit.Assert.assertTrue;
+
 public class Testme {
     private WebDriver driver;
     private MainPage mainPage;
@@ -22,4 +24,6 @@ public class Testme {
 mainPage.clickPersonalAccountButton();
 enterPage.clickRegisterButton();
 registerPage.setNewUserData("fwe", "ddf","bb");
+registerPage.clickRegisterButton();
+        assertTrue(registerPage.isWrongPassword());
 }}
