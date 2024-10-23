@@ -18,6 +18,8 @@ public class UserPersonalAccountPage {
     private final By stellarBurgerLogo = By.xpath(".//div[@class='AppHeader_header__logo__2D0X2']");
     //локтор конструктора
     private final By constructorButton = By.xpath(".//p[text()='Конструктор']");
+
+
     public UserPersonalAccountPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
@@ -41,4 +43,6 @@ public class UserPersonalAccountPage {
         this.driver.findElement(this.stellarBurgerLogo).click();
         return this;
     }
+
+
 }

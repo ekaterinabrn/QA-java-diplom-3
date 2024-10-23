@@ -14,18 +14,16 @@ public class MainPage {
     private WebDriverWait wait;
     //локатор раздела булки
     private final By breadSection = By.cssSelector(".tab_tab__1SPyG:nth-child(1)");
-            //xpath(".//span[contains(text(),'Булки')]");
     //локатор раздела соусы
     private final By saucesSection =By.cssSelector(".tab_tab__1SPyG:nth-child(2)");
-                    //xpath(".//span[contains(text(),'Соусы')]");
     //локатор раздела начинки
     private final By  fillingSection = By.cssSelector(".tab_tab__1SPyG:nth-child(3)");
-            //By.xpath(".//span[contains(text(),'Начинки')]");
     //локатор кнопки личный кабинет
     private final By  personalAccountButton =By.xpath(".//*[text() = 'Личный Кабинет']");
     //локатор кнопки войти в аккаунт
     private final By  loginYourAccountButton = By.xpath(".//button[text()='Войти в аккаунт']");
-
+//локатор кнопки оформить заказ доступной после авторизации
+private final By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
     public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Увеличенное время ожидания
@@ -80,8 +78,8 @@ public class MainPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         clickSaucesSectionButton();
         // Получаем текущий класс элемента начинки
-        String classAttribute = driver.findElement(saucesSection).getAttribute("class");
-        return classAttribute.contains("current");
+        String classSauceAttribute = driver.findElement(saucesSection).getAttribute("class");
+        return classSauceAttribute.contains("current");
     }
     //клик для перехода в раздел начинки
     @Step("Click on the fillings section")
@@ -97,8 +95,10 @@ public class MainPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
        clickFillingsSectionButton();
         // Получаем текущий класс элемента начинки
-        String classAttribute = driver.findElement(fillingSection).getAttribute("class");
-        return classAttribute.contains("current");
+        String classFillingAttribute = driver.findElement(fillingSection).getAttribute("class");
+        return classFillingAttribute.contains("current");
     }
-
+    @Step("the user has been logged in")
+    public boolean iscreateOrderButton(){
+             return driver.findElement(createOrderButton).isDisplayed();}
 }
