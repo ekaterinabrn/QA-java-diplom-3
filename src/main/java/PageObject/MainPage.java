@@ -13,11 +13,14 @@ public class MainPage {
     private WebDriver driver;
     private WebDriverWait wait;
     //локатор раздела булки
-    private final By breadSection = By.xpath(".//span[contains(text(),'Булки')]");
+    private final By breadSection = By.cssSelector(".tab_tab__1SPyG:nth-child(1)");
+            //xpath(".//span[contains(text(),'Булки')]");
     //локатор раздела соусы
-    private final By saucesSection =By.xpath(".//span[contains(text(),'Соусы')]");
+    private final By saucesSection =By.cssSelector(".tab_tab__1SPyG:nth-child(2)");
+                    //xpath(".//span[contains(text(),'Соусы')]");
     //локатор раздела начинки
-    private final By  fillingSection =By.xpath(".//span[contains(text(),'Начинки')]");
+    private final By  fillingSection = By.cssSelector(".tab_tab__1SPyG:nth-child(3)");
+            //By.xpath(".//span[contains(text(),'Начинки')]");
     //локатор кнопки личный кабинет
     private final By  personalAccountButton =By.xpath(".//*[text() = 'Личный Кабинет']");
     //локатор кнопки войти в аккаунт
@@ -49,21 +52,53 @@ public class MainPage {
     @Step("Click on the bread section")
     public MainPage clickBreadButton() {
         this.driver.findElement(this.breadSection).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.attributeContains(driver.findElement(breadSection), "class", "current"));
         return this;
 
+    }
+    @Step("clicking on the button leads to the appearance of the bread section")
+    public boolean isCurrentClassBreadSection() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        clickBreadButton();
+        // Получаем текущий класс элемента начинки
+        String classAttribute = driver.findElement(breadSection).getAttribute("class");
+        return classAttribute.contains("current");
     }
     //клик для перехода в раздел соусы
     @Step("Click on the sauces section")
     public MainPage clickSaucesSectionButton() {
         this.driver.findElement(this.saucesSection).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.attributeContains(driver.findElement(saucesSection), "class", "current"));
         return this;
+    }
+
+
+    @Step("clicking on the button leads to the appearance of the sauce section")
+    public boolean isCurrentClassSauceSection() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        clickSaucesSectionButton();
+        // Получаем текущий класс элемента начинки
+        String classAttribute = driver.findElement(saucesSection).getAttribute("class");
+        return classAttribute.contains("current");
     }
     //клик для перехода в раздел начинки
     @Step("Click on the fillings section")
     public MainPage clickFillingsSectionButton() {
         this.driver.findElement(this.fillingSection).click();
+        // Ожидаем, пока атрибут "class" элемента ingredientTab не будет содержать "current"
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.attributeContains(driver.findElement(fillingSection), "class", "current"));
         return this;
     }
-
+    @Step("clicking on the button leads to the appearance of the filling section")
+    public boolean isCurrentClassFillingSection() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       clickFillingsSectionButton();
+        // Получаем текущий класс элемента начинки
+        String classAttribute = driver.findElement(fillingSection).getAttribute("class");
+        return classAttribute.contains("current");
+    }
 
 }

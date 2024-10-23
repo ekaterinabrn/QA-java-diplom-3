@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
+import java.time.Duration;
+
 
 public class DriverRule extends ExternalResource {
     private WebDriver driver;
@@ -22,25 +24,29 @@ public class DriverRule extends ExternalResource {
 
     public void initDriver() {
         if ("firefox".equals(System.getProperty("browser"))) {
-            initFirefox();
+            startFirefox();
         } else if ("yandex".equals(System.getProperty("browser"))) {
             initYandex();
         }
         else {
-            initChrome();
+            startChrome();
         }
     }
 
-    private void initFirefox() {
-        WebDriverManager.firefoxdriver().setup();
+    public void startFirefox() {
+        WebDriverManager.firefoxdriver().driverVersion("0.34.0").setup();
         var opts = new FirefoxOptions()
                 .configureFromEnv();
         driver = new FirefoxDriver(opts);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
-    private void initChrome() {
+
+    public void startChrome() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
     private void initYandex() {
