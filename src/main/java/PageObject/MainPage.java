@@ -42,7 +42,7 @@ private final By createOrderButton = By.xpath(".//button[text()='Оформит�
     @Step("click on the Personal account button")
     // Метод для клика по кнопке "Личный кабинет"
     public MainPage clickPersonalAccountButton() {
-        WebElement personalAccountButtonElement = wait.until(ExpectedConditions.elementToBeClickable(personalAccountButton));
+        WebElement personalAccountButtonElement = wait.until(ExpectedConditions.visibilityOfElementLocated(personalAccountButton));
         personalAccountButtonElement.click();
         return this;
     }
@@ -101,4 +101,10 @@ private final By createOrderButton = By.xpath(".//button[text()='Оформит�
     @Step("the user has been logged in")
     public boolean iscreateOrderButton(){
              return driver.findElement(createOrderButton).isDisplayed();}
+    @Step("a method for waiting for the modal window to close")
+    public MainPage closeModalWindow(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("Modal_modal_overlay__x2ZCr")));
+        return this;
+    }
 }

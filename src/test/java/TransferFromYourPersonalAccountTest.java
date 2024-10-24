@@ -2,42 +2,71 @@ import API.User;
 import API.UserClient;
 import PageObject.EnterPage;
 import PageObject.MainPage;
-import PageObject.RegisterPage;
+import PageObject.UserPersonalAccountPage;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import static API.Constant.RandomDataUser.*;
+import static org.junit.Assert.assertTrue;
 
 public class TransferFromYourPersonalAccountTest {
     private WebDriver driver;
     private MainPage mainPage;
     private EnterPage enterPage;
-    private RegisterPage registerPage;
     private String accessToken;
+    User user;
     @Rule
     public DriverRule factory = new DriverRule();
-    @Test
-    public void testAccordionAnswers() {
+
+    @Before
+    public void setUp() {
         User user = new User(RANDOM_EMAIL, RANDOM_PASSWORD, RANDOM_NAME);
         Response createUserTest = UserClient.createUser(user);
         this.accessToken = UserClient.getAccessToken(createUserTest);
         WebDriver driver = factory.getDriver();
         mainPage = new MainPage(driver);
-        enterPage=new EnterPage(driver);
-        registerPage=new RegisterPage(driver);
+        enterPage = new EnterPage(driver);
         mainPage.open();
-mainPage.clickPersonalAccountButton();
-enterPage.setUserData(user.getEmail(), user.getPassword());
+        mainPage.clickPersonalAccountButton();
+        enterPage.setUserData(user.getEmail(), user.getPassword());
+        enterPage.clickEnterButton();
+        mainPage.closeModalWindow();
+        mainPage.clickPersonalAccountButton();
 
     }
-@After
-public void deleteUser() {
-    if (accessToken != null) {
-        Response delete = UserClient.deleteUser(accessToken);
-        delete.then().statusCode(202);
+
+    @Test
+    @Description("Checking the transfer from your personal account to the main page after click on the Constructor button")
+    public void transferByClickingOnTheConstructorTest() {
+        WebDriver driver = factory.getDriver();
+        UserPersonalAccountPage personalAccountPage = new UserPersonalAccountPage(driver);
+        personalAccountPage.clickConstructorButton();
+        mainPage.closeModalWindow();
+        assertTrue(mainPage.iscreateOrderButton());
+
     }
-}}
+
+    @Test
+    @Description("Checking the transition from your personal account to the main page by clicking the Stellar Burgers logo")
+    public void transferByClickingOnTheLogoTest() {
+        WebDriver driver = factory.getDriver();
+        UserPersonalAccountPage personalAccountPage = new UserPersonalAccountPage(driver);
+        personalAccountPage.clickStellarBurgerLogo();
+        mainPage.closeModalWindow();
+        assertTrue(mainPage.iscreateOrderButton());
+    }
+
+    @After
+    public void deleteUser() {
+        if (accessToken != null) {
+            Response delete = UserClient.deleteUser(accessToken);
+            delete.then().statusCode(202);
+        }
+    }
+}
 
