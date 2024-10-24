@@ -22,7 +22,8 @@ public class EnterPage {
     private final By  registerButton =By.xpath(".//a[(@class = 'Auth_link__1fOlj' and text()= 'Зарегистрироваться')]");
     //локатор кнопки восстановить пароль
     private final By  recoverPasswordButton = By.xpath(".//a[(@class = 'Auth_link__1fOlj' and text()= 'Восстановить пароль')]");
-
+//локатор надписи вход на странице
+private final By entranceIndicator = By.xpath(".//*[text()='Вход']");
     public EnterPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -67,6 +68,10 @@ public class EnterPage {
         setEmail(email);
        setPassword(password);
     return this;
+    }
+    @Step("the appearance of the login page")
+    public boolean isEntranceIndicatorDisplayed() {
+        return driver.findElement(entranceIndicator).isDisplayed();
     }
     }
 
