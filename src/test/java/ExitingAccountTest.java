@@ -15,11 +15,9 @@ import static API.Constant.RandomDataUser.*;
 import static org.junit.Assert.assertTrue;
 
 public class ExitingAccountTest {
-    private WebDriver driver;
     private MainPage mainPage;
     private EnterPage enterPage;
     private String accessToken;
-    User user;
     @Rule
     public DriverRule factory = new DriverRule();
 

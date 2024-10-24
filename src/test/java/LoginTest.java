@@ -57,7 +57,7 @@ enterPage.clickEnterButton();
         enterPage.clickEnterButton();
         assertTrue(mainPage.iscreateOrderButton());}
     @Test
-    @DisplayName("Log in via the button in the registration form")
+    @DisplayName("Log in  the button in the registration form")
     public void loginFromRegisterPageTest(){
         WebDriver driver = factory.getDriver();
         mainPage = new MainPage(driver);
@@ -75,7 +75,7 @@ enterPage.clickEnterButton();
 
 
     @Test
-    @DisplayName("Login via the button in the password recovery form")
+    @DisplayName("Login  the button in the password recovery form")
     public void loginFromPasswordRecoveryPageTest(){
             WebDriver driver = factory.getDriver();
             mainPage = new MainPage(driver);
