@@ -44,6 +44,7 @@ public class ExitingAccountTest {
         WebDriver driver = factory.getDriver();
         UserPersonalAccountPage personalAccountPage = new UserPersonalAccountPage(driver);
        personalAccountPage.clickExitButton();
+//в мозиле добавить ждун модального окна
         assertTrue(enterPage.isEntranceIndicatorDisplayed());
 
     }

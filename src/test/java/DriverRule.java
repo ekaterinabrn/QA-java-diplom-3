@@ -26,7 +26,7 @@ public class DriverRule extends ExternalResource {
         if ("firefox".equals(System.getProperty("browser"))) {
             startFirefox();
         } else if ("yandex".equals(System.getProperty("browser"))) {
-            initYandex();
+            startYandex();
         }
         else {
             startChrome();
@@ -49,13 +49,15 @@ public class DriverRule extends ExternalResource {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
-    private void initYandex() {
+    private void startYandex() {
         WebDriverManager.chromedriver().driverVersion(System.getProperty("driver.version")).setup();
 
         var options = new ChromeOptions();
         options.setBinary(System.getProperty("webdriver.yandex.bin"));
 
         driver = new ChromeDriver(options);
+
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     }
 
     public WebDriver getDriver() {
