@@ -1,5 +1,6 @@
 package API;
 
+import io.qameta.allure.Param;
 import io.qameta.allure.Step;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -7,6 +8,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import static API.Constant.EndpointConstant.*;
+import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 import static io.restassured.RestAssured.given;
 
 public class UserClient {
@@ -20,7 +22,7 @@ public class UserClient {
                     .post(CREATE_USER);
         }
         @Step("Delete user")
-        public static Response deleteUser( String accessToken){
+        public static Response deleteUser(@Param(mode = HIDDEN) String accessToken){
             return given().log().all()
                     .header("Authorization", accessToken)
                     .spec(getSpec())
