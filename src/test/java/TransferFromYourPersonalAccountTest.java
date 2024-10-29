@@ -1,8 +1,5 @@
-import API.User;
-import API.UserClient;
-import PageObject.EnterPage;
-import PageObject.MainPage;
-import PageObject.UserPersonalAccountPage;
+import api.User;
+import api.UserClient;
 import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -10,8 +7,11 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import pageobject.EnterPage;
+import pageobject.MainPage;
+import pageobject.UserPersonalAccountPage;
 
-import static API.Constant.RandomDataUser.*;
+import static api.constant.RandomDataUser.*;
 import static org.junit.Assert.assertTrue;
 
 public class TransferFromYourPersonalAccountTest {

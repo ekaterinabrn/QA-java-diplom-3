@@ -1,4 +1,4 @@
-package API.Constant;
+package api.constant;
 
 public class EndpointConstant {
     public static final String URL ="https://stellarburgers.nomoreparties.site";

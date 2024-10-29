@@ -1,8 +1,8 @@
-import PageObject.MainPage;
 import io.qameta.allure.Description;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import pageobject.MainPage;
 
 import static org.junit.Assert.assertTrue;
 
@@ -12,6 +12,7 @@ public class TransitionConstructorTest {
 
     @Rule
     public DriverRule factory = new DriverRule();
+
     @Description("clicking on the button leads to the appearance of the bun section")
     @Test
     public void testBunSectionButton() {
@@ -22,12 +23,13 @@ public class TransitionConstructorTest {
         mainPage.clickFillingsSectionButton();
         assertTrue("Класс не содержит 'current'", mainPage.isCurrentClassBreadSection());
     }
+
     @Description("clicking on the button leads to the appearance of the sauce section")
     @Test
-        public void testSauceSectionButton() {
-            WebDriver driver = factory.getDriver();
-            mainPage = new MainPage(driver);
-            mainPage.open();
+    public void testSauceSectionButton() {
+        WebDriver driver = factory.getDriver();
+        mainPage = new MainPage(driver);
+        mainPage.open();
         assertTrue("Класс не содержит 'current'", mainPage.isCurrentClassSauceSection());
     }
 
@@ -40,5 +42,6 @@ public class TransitionConstructorTest {
         // Проверяем, что  клик переводит в раздел начинки
         assertTrue("Класс не содержит 'current'", mainPage.isCurrentClassFillingSection());
 
-    }}
+    }
+}
 

@@ -1,8 +1,4 @@
-import API.UserClient;
-import PageObject.EnterPage;
-import PageObject.MainPage;
-import PageObject.PasswordRecoveryPage;
-import PageObject.RegisterPage;
+import api.UserClient;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -11,9 +7,13 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
+import pageobject.EnterPage;
+import pageobject.MainPage;
+import pageobject.PasswordRecoveryPage;
+import pageobject.RegisterPage;
 
-import static API.Constant.RandomDataUser.RANDOM_EMAIL;
-import static API.Constant.RandomDataUser.RANDOM_NAME;
+import static api.constant.RandomDataUser.RANDOM_EMAIL;
+import static api.constant.RandomDataUser.RANDOM_NAME;
 import static org.junit.Assert.assertTrue;
 
 public class RegistrationNewUserTest {
@@ -27,6 +27,7 @@ public class RegistrationNewUserTest {
     public DriverRule factory = new DriverRule();
 
     @Test
+    @DisplayName("Registration  new user with  password  6 char success")
     public void registerNewUserTest() {
         WebDriver driver = factory.getDriver();
         mainPage = new MainPage(driver);

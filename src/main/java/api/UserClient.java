@@ -1,4 +1,4 @@
-package API;
+package api;
 
 import io.qameta.allure.Param;
 import io.qameta.allure.Step;
@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-import static API.Constant.EndpointConstant.*;
+import static api.constant.EndpointConstant.*;
 import static io.qameta.allure.model.Parameter.Mode.HIDDEN;
 import static io.restassured.RestAssured.given;
 
